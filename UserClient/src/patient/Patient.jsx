@@ -4,7 +4,7 @@ import RPCClient from '../RPCClient';
 import {connect} from 'react-redux';
 
 import Home from './views/Home';
-import Network from './views/Network';
+// import Network from './views/Network';
 import Relationships from './views/Relationships';
 import DropDownMenu from '../DropDownMenu';
 
@@ -45,10 +45,10 @@ class Patient extends Component {
               <button className="buttonHome">Home
               </button>
             </Link>
-            <Link to="/patient/network">
+            {/* <Link to="/patient/network">
               <button className="buttonAbout">Your network
               </button>
-            </Link>
+            </Link> */}
             <Link to="/patient/relationships">
               <button className="buttonRelationships">Edit Relationships
               </button>
@@ -57,7 +57,7 @@ class Patient extends Component {
         </div>
         <div>
           <Route path="/patient/home" component={Home}/>
-          <Route path="/patient/network" component={Network}/>
+          {/* <Route path="/patient/network" component={Network}/> */}
           <Route path="/patient/relationships" render={(props) => (
             <Relationships contract={this.props.contract} {...props} />
           )} />

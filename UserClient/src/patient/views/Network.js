@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Ethereum from '../../Ethereum';
 
-import {InteractiveForceGraph, ForceGraphNode, ForceGraphLink} from 'react-vis-force';
+// import {InteractiveForceGraph, ForceGraphNode, ForceGraphLink} from 'react-vis-force';
 import './chart.css';
 
 class Network extends Component {
@@ -38,7 +38,7 @@ class Network extends Component {
           <span className="colorBlock" style={{background: colorProvider}}></span>
           relationships and {this.state.links.length} Viewer
           <span className="colorBlock" style={{background: colorViewer}}></span> relationships.</p>
-        <InteractiveForceGraph
+        {/* <InteractiveForceGraph
           simulationOptions={{
             animate: true,
             radiusMargin: 10,
@@ -53,7 +53,7 @@ class Network extends Component {
           zoomOptions={{minScale: 1, maxScale: 5}} >
           {nodes}
           {links}
-        </InteractiveForceGraph>
+        </InteractiveForceGraph> */}
       </div>
     );
   }
