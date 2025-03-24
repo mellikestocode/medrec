@@ -1,7 +1,7 @@
-import Web3 from 'web3';
+// import Web3 from 'web3';
 import contract from 'truffle-contract';
 import Promise from 'bluebird';
-import {keystore, signing} from 'eth-lightwallet';
+// import {keystore, signing} from 'eth-lightwallet';
 import ProviderEngine from 'web3-provider-engine';
 //import FilterSubprovider from 'web3-provider-engine/subproviders/filters.js';
 import HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet.js';
@@ -21,7 +21,7 @@ import RPCClient from './RPCClient';
 class Ethereum {
   constructor () {
     this.engine = new ProviderEngine();
-    this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+    // this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     //this.web3 = new Web3(this.engine);
     //this.utils = new Utils();
     this.pendingTransactions = [];
@@ -61,12 +61,12 @@ class Ethereum {
     return new Promise((resolve, reject) => {
       let timer;
       let check = () => {
-        this.web3.eth.net.isListening().then(listening => {
-          if(listening) {
-            clearTimeout(timer);
-            resolve();
-          }
-        }).catch(() => {});
+        // this.web3.eth.net.isListening().then(listening => {
+        //   if(listening) {
+        //     clearTimeout(timer);
+        //     resolve();
+        //   }
+        // }).catch(() => {});
       };
       timer = setInterval(check, 2000);
       check();
@@ -91,35 +91,35 @@ class Ethereum {
       return parseInt(val);
     }
 
-    this.web3.extend({
-      property: 'personal',
-      methods: [new this.web3.extend.Method({
-        name: 'unlockAccount',
-        call: 'personal_unlockAccount',
-        params: 3,
-        inputFormatter: [this.web3.extend.utils.toAddress, toStringVal, toIntVal],
-        outputFormatter: toBoolVal,
-      })],
-    });
+    // this.web3.extend({
+    //   property: 'personal',
+    //   methods: [new this.web3.extend.Method({
+    //     name: 'unlockAccount',
+    //     call: 'personal_unlockAccount',
+    //     params: 3,
+    //     inputFormatter: [this.web3.extend.utils.toAddress, toStringVal, toIntVal],
+    //     outputFormatter: toBoolVal,
+    //   })],
+    // });
 
-    this.web3.extend({
-      property: 'personal',
-      methods: [new this.web3.extend.Method({
-        name: 'importRawKey',
-        call: 'personal_importRawKey',
-        params: 2,
-        inputFormatter: [this.web3.extend.utils.toAddress, toStringVal],
-      })],
-    });
+    // this.web3.extend({
+    //   property: 'personal',
+    //   methods: [new this.web3.extend.Method({
+    //     name: 'importRawKey',
+    //     call: 'personal_importRawKey',
+    //     params: 2,
+    //     inputFormatter: [this.web3.extend.utils.toAddress, toStringVal],
+    //   })],
+    // });
 
-    this.web3.extend({
-      property: 'miner',
-      methods: [new this.web3.extend.Method({
-        name: 'start',
-        call: 'miner_start',
-        params: 0,
-      })],
-    });
+    // this.web3.extend({
+    //   property: 'miner',
+    //   methods: [new this.web3.extend.Method({
+    //     name: 'start',
+    //     call: 'miner_start',
+    //     params: 0,
+    //   })],
+    // });
   }
 
   //initialize the modular Web3 API provider
@@ -189,13 +189,13 @@ class Ethereum {
     this.engine.on('block', (block) => {
       let newPendTrans = [];
       this.pendingTransactions.forEach(txObj => {
-        this.web3.eth.getTransactionReceipt(txObj.txid).then(receipt => {
-          if(receipt && receipt.blockHash) {
-            txObj.resolve(receipt);
-          }else {
-            newPendTrans.push(txObj);
-          }
-        });
+        // this.web3.eth.getTransactionReceipt(txObj.txid).then(receipt => {
+        //   if(receipt && receipt.blockHash) {
+        //     txObj.resolve(receipt);
+        //   }else {
+        //     newPendTrans.push(txObj);
+        //   }
+        // });
       });
       this.pendingTransactions = newPendTrans;
     });

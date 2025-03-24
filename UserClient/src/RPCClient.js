@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import Ethereum from './Ethereum';
+// import Ethereum from './Ethereum';
 
 let requestNonce = 0;
 
@@ -23,13 +23,13 @@ class RPCClient {
       if(signed) {
       //sign the message with the current time before sending
         args.Time = '' + (new Date).getTime();
-        Ethereum.getAccounts()
-          .then(accounts => {
-            return  Ethereum.web3.eth.sign(args.Time, accounts[0]);
-          }).then(sig => {
-            args.Signature = sig;
-            this._send(method, args, resolve, reject);
-          });
+        // Ethereum.getAccounts()
+        //   .then(accounts => {
+        //     return  Ethereum.web3.eth.sign(args.Time, accounts[0]);
+        //   }).then(sig => {
+        //     args.Signature = sig;
+        //     this._send(method, args, resolve, reject);
+        //   });
       }else {
         this._send(method, args, resolve, reject);
       }

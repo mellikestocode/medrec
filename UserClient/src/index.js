@@ -7,13 +7,13 @@ import {store, persistor} from './reduxStore';
 import Patient from './patient/Patient';
 import Provider from './provider/Provider';
 import Home from './home/Home';
-import Ethereum from './Ethereum';
-window.Ethereum = Ethereum;
+// import Ethereum from './Ethereum';
+// window.Ethereum = Ethereum;
 class InitialLoad extends Component {
   constructor () {
     super();
     this.state = {
-      ethLoading: true,
+      ethLoading: false,
     };
   }
 
@@ -27,10 +27,10 @@ class InitialLoad extends Component {
   componentDidMount () {
     //if the user just refreshed the page get their data out of browser storage
     //and into the web app
-    if(store.getState().homeReducer.username) {
-      Ethereum.refreshVault();
-    }
-    Ethereum.waitForRPCConn().then(() => this.setState({ethLoading: false}));
+    // if(store.getState().homeReducer.username) {
+    //   Ethereum.refreshVault();
+    // }
+    // Ethereum.waitForRPCConn().then(() => this.setState({ethLoading: false}));
   }
 }
 renderDOM(
