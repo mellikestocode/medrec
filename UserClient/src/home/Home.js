@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Switch from 'react-toggle-switch';
 import RPCClient from '../RPCClient';
 import Ethereum from '../Ethereum';
 import './home.css';
@@ -20,7 +19,6 @@ class Home extends Component {
       password: '',
       seed: '',
       mode: 'patient',
-      switched: false,
       enableModal: false,
       enableSeedModal: true,
       enableConfirmModal: false,
@@ -36,18 +34,8 @@ class Home extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.finishCreateAgent = this.finishCreateAgent.bind(this);
     this.login = this.login.bind(this);
-    this.toggleSwitch = this.toggleSwitch.bind(this);
     this.selectContract = this.selectContract.bind(this);
     this.enablePreviewModal = this.enablePreviewModal.bind(this);
-  }
-
-  toggleSwitch () {
-    this.setState(prevState => {
-      return {
-        switched: !prevState.switched,
-        mode: !prevState.switched ? 'provider' : 'patient',
-      };
-    });
   }
 
   selectContract (event) {
@@ -198,11 +186,9 @@ class Home extends Component {
             <p>v1.0</p>
             <div id="logoSprite"></div>
           </div>
-          <div  id="loginPane" >
+          <div  id="loginPane">
             <div id={loginStyle}>
-              <Switch onClick={this.toggleSwitch} on={this.state.switched}/>
-              <h3>Login as {this.state.mode}</h3>
-              {/*{users}*/}
+              <h3>Login</h3>
               <div id="loginUserPassContainer">
                 <div id="loginUserPass">
                   <input className="inputStyle" id="loginUser" onChange={this.changeFieldById}
